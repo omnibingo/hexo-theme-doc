@@ -59,6 +59,32 @@ function SearchResultsTitle ({results, query}) {
 }
 */
 
+function generateBody(body, query) {
+  var indexNumber = body.indexOf(query);
+  var bodyLength = body.length;
+  var returnBody = '';
+  var frontCut = 10;
+  var bodyCut = 100;
+
+  if (indexNumber < frontCut && bodyLength > bodyCut) {
+    returnBody = body.substring(0, bodyCut) + '...';
+  }
+  else if (indexNumber < frontCut && bodyLength < bodyCut) {
+    returnBody = body.substring(0, bodyLength);
+  }
+  else if (indexNumber > frontCut && bodyLength > (bodyCut + indexNumber)) {
+    returnBody = '...' + body.substring(indexNumber - frontCut, bodyCut + indexNumber) + '...';
+  }
+  else if (indexNumber > frontCut && bodyLength < (bodyCut + indexNumber)) {
+    returnBody = '...' + body.substring(indexNumber - frontCut, bodyLength);
+  }
+  //add highlight 
+
+  returnBody = returnBody.replace(new RegExp(query, 'g'), '<span style="font-weight: bold;">' + query + '</span>');
+  //<span class="doc-highlight">contact</span>
+  return returnBody;
+}
+
 function SearchResultsTitle({ results, query }) {
   return (
     <div>
