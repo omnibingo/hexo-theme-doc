@@ -45,7 +45,7 @@ class SearchForm extends React.Component {
     );
   }
 }
-
+/**
 function SearchResultsTitle ({results, query}) {
   return (
     <div>
@@ -54,6 +54,19 @@ function SearchResultsTitle ({results, query}) {
       </h1>
 
       { !results.length ? <p>There are no results for "{query}". Why not <strong>try typing another keyword?</strong></p> : null }
+    </div>
+  );
+}
+*/
+
+function SearchResultsTitle({ results, query }) {
+  return (
+    <div>
+      <h1 className="doc-search-results__title">
+        搜索 <span className="doc-search-results__title__query">"{query}"</span>，{ results.length ? results.length+'个' : '没有' } 结果 ：
+      </h1>
+
+      { !results.length ? <p>没能搜索 "{query}"到结果.  <strong>试试其他关键字？</strong></p> : null }
     </div>
   );
 }
